@@ -1,10 +1,9 @@
 <script setup>
-import ChartBTS from "@/components/ChartBTS.vue";
 </script>
 
 <template>
   <main>
-    <ChartBTS msg="I'm B.T.S." />
+    control view
   </main>
 </template>
 
