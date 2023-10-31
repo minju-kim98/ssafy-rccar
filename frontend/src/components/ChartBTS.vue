@@ -17,7 +17,6 @@ const props = defineProps({
 
 const socket = io("http://localhost:3000");
 socket.on("kfc", (arg) => {
-  console.log(arg);
   times.value = arg.map((x) => dayjs(x.time).format("HH:mm:ss"));
   temperatures.value = arg.map((x) => x.num1);
   humidities.value = arg.map((x) => x.num2);
@@ -49,8 +48,21 @@ socket.emit("bbq", "is soso");
   <div class="BTS">
     <h1>{{ msg }}</h1>
     <p>
-      BTS는 샴푸가 아닙니다.
+      오구오구 우리 RC카 측정값
     </p>
     <VueApexCharts width="500" type="line" :options="options" :series="series" />
   </div>
 </template>
+
+<style scoped>
+.BTS {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  font-weight: bold;
+  width: 500px;
+}
+
+
+</style>
