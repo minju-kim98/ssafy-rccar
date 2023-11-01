@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import koreaMap from "./koreaMap.vue";
+import koreaMap from "@/components/koreaMap.vue";
 
 const latitude = ref(null);
 const longitude = ref(null);
@@ -75,6 +75,7 @@ div {
   align-items: center;
   gap: 40px;
   font-weight: bold;
+  text-align: center;
   width: 500px;
 }
 

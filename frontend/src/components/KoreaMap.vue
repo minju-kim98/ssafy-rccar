@@ -1,6 +1,6 @@
 <script>
 import * as d3 from "d3";
-import * as topojson from "topojson";
+import * as topojson from "topojson-client";
 import koreanMap from "@/assets/skorea_municipalities_topo_simple.json";
 import pin from "@/assets/location-pin-solid.png";
 
@@ -47,7 +47,7 @@ export default {
         .attr("stroke", "white")
         .attr("stroke-width", 0.5);
 
-      const icons = svg
+      svg
         .append("g")
         .selectAll("svg")
         .data(currentLoc)
@@ -58,7 +58,7 @@ export default {
         .attr("x", (d) => projection([d.lon, d.lat])[0])
         .attr("y", (d) => projection([d.lon, d.lat])[1] + 30)
         .attr("opacity", 0)
-        .attr(":href", pin)
+        .attr("href", pin)
         .transition()
         .ease(d3.easeElastic)
         .duration(2000)
