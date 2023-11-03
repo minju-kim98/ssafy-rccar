@@ -29,6 +29,10 @@ function closeNav() {
       ><i class="fa-solid fa-gamepad"></i>
       <div>Control</div></RouterLink
     >
+    <RouterLink to="/companion" class="link-to-web"
+      ><i class="fa-solid fa-heart"></i>
+      <div>Companion Level</div></RouterLink
+    >
   </div>
 </template>
 

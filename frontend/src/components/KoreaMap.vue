@@ -7,7 +7,8 @@ import pin from "@/assets/location-pin-solid.png";
 export default {
   name: "Map",
   props: ["latitude", "longitude"],
-  mounted() {
+
+  updated(){
     this.drawMap();
   },
 
@@ -35,6 +36,7 @@ export default {
       const projection = d3
         .geoMercator()
         .fitSize([600, 400], { type: "FeatureCollection", features });
+
       const path = d3.geoPath().projection(projection);
 
       svg
@@ -47,8 +49,9 @@ export default {
         .attr("stroke", "white")
         .attr("stroke-width", 0.5);
 
-      svg
-        .append("g")
+      const iconsLayer = svg.append('g');
+
+      iconsLayer
         .selectAll("svg")
         .data(currentLoc)
         .enter()
@@ -58,13 +61,14 @@ export default {
         .attr("x", (d) => projection([d.lon, d.lat])[0])
         .attr("y", (d) => projection([d.lon, d.lat])[1] + 30)
         .attr("opacity", 0)
-        .attr("href", pin)
+        .attr("xlink:href", pin)
         .transition()
         .ease(d3.easeElastic)
         .duration(2000)
         .delay((d, i) => i * 50)
         .attr("opacity", 1)
         .attr("y", (d) => projection([d.lon, d.lat])[1]);
+        
 
     },
   },

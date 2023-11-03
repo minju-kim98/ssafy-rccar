@@ -17,6 +17,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ControlView.vue')
     },
+    {
+      path: '/companion',
+      name: 'companion',
+      component: () => import('../views/CompanionView.vue')
+    },
   ]
 })
 
