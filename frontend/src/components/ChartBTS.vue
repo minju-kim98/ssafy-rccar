@@ -18,9 +18,9 @@ const props = defineProps({
 const socket = io("http://localhost:3000");
 socket.on("kfc", (arg) => {
   times.value = arg.map((x) => dayjs(x.time).format("HH:mm:ss"));
-  temperatures.value = arg.map((x) => x.num1);
-  humidities.value = arg.map((x) => x.num2);
-  pressures.value = arg.map((x) => x.num3);
+  pressures.value = arg.map((x) => x.num1);
+  temperatures.value = arg.map((x) => x.num2);
+  humidities.value = arg.map((x) => x.num3);
   options.value = {
     xaxis: {
       categories: times.value,
@@ -28,15 +28,15 @@ socket.on("kfc", (arg) => {
   };
   series.value = [
     {
-      name: "온도",
+      name: "온도/100",
       data: temperatures.value,
     },
     {
-      name: "습도",
+      name: "습도/100",
       data: humidities.value,
     },
     {
-      name: "대기압",
+      name: "대기압/10000",
       data: pressures.value,
     },
   ];
