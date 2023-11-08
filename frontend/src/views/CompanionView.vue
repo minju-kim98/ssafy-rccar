@@ -13,7 +13,7 @@ async function getCompanionship() {
   console.log(companionship.value)
 }
 function setImage(image_src) {
-  return `http://3.36.75.253:3000/${image_src}`;
+  return `http://localhost:3000/${image_src}`;
 }
 
 getCompanionship();
@@ -27,17 +27,14 @@ getCompanionship();
     </div>
 
     <div class="section-wrapper">
-    <section v-for="p in companionship" :key="p.id">
-      <article class="profile">
-        <img :src="`${setImage(p.photo)}`" alt="profile image" />
-
-        <h1>{{ p.name }}</h1>
-        <h2>{{ p.companion }}</h2>
-      </article>
-
-      
-    </section>
-  </div>
+      <section v-for="p in companionship" :key="p.id">
+        <article class="profile">
+          <img :src="`${setImage(p.photo)}`" alt="profile image" width="200"/>
+          <div class="name-container">{{ p.name }}</div>
+          <div class="level-container">{{ p.level }}</div>
+        </article>
+      </section>
+    </div>
 
 
 
@@ -54,6 +51,34 @@ main{
   color:rgb(206, 167, 243);
 }
 
+.section-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+section{
+  margin: 20px;
+  padding: 30px;
+  background-color: rgba(219, 198, 238, 0.733);
+  border-radius: 2%;
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  transform: translate(50, 50);
+  box-shadow: 5px 15px 30px rgba(217, 173, 230, 0.8);
+}
 
 
 

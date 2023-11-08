@@ -5,12 +5,7 @@ const app = express()
 const port = 3000
 
 const cors = require("cors");
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://3.36.75.253:3000'
-  })
-);
+app.use(cors());
 
 const morgan = require("morgan");
 app.use(morgan("dev"));
@@ -20,6 +15,25 @@ app.use("/public", express.static("public"));
 
 const path = require("path");
 const multer = require("multer");
+const upload = multer({
+	storage: multer.diskStorage({
+		destination: (req, file, done) => {
+			done(null, "public/");
+		},
+		filename: (req, file, done) => {
+			console.log("test");
+			// console.log(file);
+			const ext = path.extname(file.originalname);
+			// console.log(ext);
+			const fileNameExeptExt = path.basename(file.originalname, ext);
+			// console.log(fileNameExeptExt);
+			const saveFileName = fileNameExeptExt + Date.now() + ext;
+			console.log(saveFileName);
+			done(null, saveFileName);
+		},
+	}),
+	limits: { fileSize: 5 * 1024 * 1024 },
+});
 
 const http = require('http')
 const server = http.createServer(app)
@@ -52,12 +66,13 @@ io.on("connection", async (socket) => {
 
 app.get("/api/companionship", async (req, res) => {
   try {
-    const data = await pool.query("SELECT * FROM COMPANIONSHIP");
+    const data = await pool.query("SELECT * FROM companionship");
     return res.json(data[0]);
   } catch (error) {
     return res.json({
       success: false,
       message: "전체 호감도 목록 조회에 실패하였습니다.",
+      error
     });
   }
 });
