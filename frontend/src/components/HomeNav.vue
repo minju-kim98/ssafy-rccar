@@ -58,13 +58,21 @@ function closeNav() {
   position: relative;
   display: flex;
   flex-direction: row;
-  gap: 25px;
+  gap: 30px;
   align-items: baseline;
+
+}
+
+.link-to-web i{
+  width: 20px;
+  text-align: center;
 }
 
 .link-to-web div {
   width: 300px;
   text-align: left;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .sidenav a:hover {

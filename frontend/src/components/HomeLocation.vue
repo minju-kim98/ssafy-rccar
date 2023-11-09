@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from "vue";
 import koreaMap from "@/components/koreaMap.vue";
+import { useLocationStore } from "@/stores/location";
+
+const location = useLocationStore();
 
 const latitude = ref(null);
 const longitude = ref(null);
@@ -17,6 +20,10 @@ async function renderPosition() {
     const position = await getPosition();
     latitude.value = position.coords.latitude;
     longitude.value = position.coords.longitude;
+
+    location.setlat(latitude.value);
+    location.setlon(longitude.value);
+
     getAddress(latitude.value, longitude.value);
   } catch (error) {
     console.log(error);
@@ -58,6 +65,7 @@ async function getAddress(latitude, longitude) {
 }
 
 renderPosition();
+
 </script>
 
 <template>
@@ -77,6 +85,7 @@ div {
   font-weight: bold;
   text-align: center;
   width: 500px;
+  line-height: 1.5;
 }
 
 .fa-location-dot{

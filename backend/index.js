@@ -93,6 +93,88 @@ app.get("/api/companionship/:id", async (req, res) => {
   }
 });
 
+app.post("/api/companionship", upload.single("file"), async (req, res) => {
+	try {
+		const data = await pool.query(
+			`INSERT INTO companionship (name, photo, level)
+		 VALUES (?, ?, ?)`,
+			[req.body.name, req.file.path, 0]
+		);
+
+		return res.json({
+			success: true,
+			message: "사용자 등록에 성공하였습니다.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			success: false,
+			message: "사용자 등록에 실패하였습니다.",
+		});
+	}
+});
+
+app.patch("/api/companionship/:id", async (req, res) => {
+	try {
+		console.log(req.params);
+
+		const data = await pool.query(
+			`UPDATE companionship SET name = ? where id = ?`,
+			[req.body.name, req.params.id]
+		);
+
+		return res.json({
+			success: true,
+			message: "사용자 정보 수정에 성공하였습니다.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			success: false,
+			message: "사용자 정보 수정에 실패하였습니다.",
+		});
+	}
+});
+
+app.post("/api/companionship/:id/image", upload.single("file"), async (req, res) => {
+	try {
+		const data = await pool.query(
+			`UPDATE companionship SET photo= ? where id = ?`,
+			[req.file.path, req.params.id]
+		);
+
+		return res.json({
+			success: true,
+			message: "사용자 사진 수정에 성공하였습니다.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			success: false,
+			message: "사용자 사진 수정에 실패하였습니다.",
+		});
+	}
+});
+
+app.delete("/api/companionship/:id", async (req, res) => {
+	try {
+		const data = await pool.query(`DELETE FROM companionship WHERE id = ?`, [
+			req.params.id,
+		]);
+
+		return res.json({
+			success: true,
+			message: "사용자 삭제에 성공하였습니다.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			success: false,
+			message: "사용자 삭제에 실패하였습니다.",
+		});
+	}
+});
+
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

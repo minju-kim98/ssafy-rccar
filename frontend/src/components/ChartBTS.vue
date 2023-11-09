@@ -3,6 +3,9 @@ import { ref } from "vue";
 import io from "socket.io-client"
 import VueApexCharts from "vue3-apexcharts";
 import dayjs from "dayjs";
+import { useSensedataStore } from "@/stores/sensedata";
+
+const sensedata = useSensedataStore();
 
 const times = ref([]);
 const temperatures = ref([]);
@@ -21,6 +24,11 @@ socket.on("kfc", (arg) => {
   pressures.value = arg.map((x) => x.num1);
   temperatures.value = arg.map((x) => x.num2);
   humidities.value = arg.map((x) => x.num3);
+  
+  sensedata.settemp(temperatures.value[14]);
+  sensedata.setpressure(pressures.value[14]);
+  sensedata.sethumid(humidities.value[14]);
+ 
   options.value = {
     xaxis: {
       categories: times.value,
@@ -28,15 +36,15 @@ socket.on("kfc", (arg) => {
   };
   series.value = [
     {
-      name: "온도/100",
+      name: "온도",
       data: temperatures.value,
     },
     {
-      name: "습도/100",
+      name: "습도",
       data: humidities.value,
     },
     {
-      name: "대기압/10000",
+      name: "대기압/100",
       data: pressures.value,
     },
   ];
