@@ -3,13 +3,16 @@ import { RouterLink, RouterView } from "vue-router";
 import { ref } from "vue";
 
 const changedWidth = ref("60px");
+const showText = ref(false)
 
 function openNav() {
   changedWidth.value = "200px";
+  showText.value = true;
 }
 
 function closeNav() {
   changedWidth.value = "60px";
+  showText.value = false;
 }
 </script>
 
@@ -23,15 +26,17 @@ function closeNav() {
   >
     <RouterLink to="/" class="link-to-web"
       ><i class="fa-solid fa-chart-line"></i>
-      <div>Dashboard</div></RouterLink
+      <div v-if=showText>Dashboard</div></RouterLink
     >
-    <RouterLink to="/control" class="link-to-web"
-      ><i class="fa-solid fa-gamepad"></i>
-      <div>Control</div></RouterLink
-    >
+
     <RouterLink to="/companion" class="link-to-web"
       ><i class="fa-solid fa-heart"></i>
-      <div>Companion Level</div></RouterLink
+      <div v-if=showText>Companion Level</div></RouterLink
+    >
+
+    <RouterLink to="/control" class="link-to-web"
+      ><i class="fa-solid fa-gamepad"></i>
+      <div v-if=showText>Control</div></RouterLink
     >
   </div>
 </template>
@@ -60,10 +65,9 @@ function closeNav() {
   flex-direction: row;
   gap: 30px;
   align-items: baseline;
-
 }
 
-.link-to-web i{
+.link-to-web i {
   width: 20px;
   text-align: center;
 }
@@ -87,17 +91,6 @@ function closeNav() {
   margin-left: 50px;
 }
 
-.btn-linkemenu {
-  position: fixed;
-  left: 40px;
-  bottom: 40px;
-  width: 60px;
-  height: 60px;
-  background-image: url(@/images/circle-plus-solid.svg);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
 
 @media screen and (max-height: 450px) {
   .sidenav {

@@ -25,9 +25,9 @@ socket.on("kfc", (arg) => {
   temperatures.value = arg.map((x) => x.num2);
   humidities.value = arg.map((x) => x.num3);
   
-  sensedata.settemp(temperatures.value[14]);
-  sensedata.setpressure(pressures.value[14]);
-  sensedata.sethumid(humidities.value[14]);
+  sensedata.settemp(temperatures.value[0]);
+  sensedata.setpressure(pressures.value[0]);
+  sensedata.sethumid(humidities.value[0]);
  
   options.value = {
     xaxis: {

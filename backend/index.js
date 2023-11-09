@@ -175,6 +175,27 @@ app.delete("/api/companionship/:id", async (req, res) => {
 	}
 });
 
+app.post("/api/command", async (req, res) => {
+	try {
+		const data = await pool.query(
+			`INSERT INTO command (time, cmd_string, arg_string, is_finish)
+		 VALUES (?, ?, ?, ?)`,
+			[req.body.time, req.body.cmd_string, req.body.arg_string, 0]
+		);
+
+		return res.json({
+			success: true,
+			message: "이동에 성공하였습니다.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.json({
+			success: false,
+			message: "이동에 실패하였습니다.",
+		});
+	}
+});
+
 server.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
