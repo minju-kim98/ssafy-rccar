@@ -3,22 +3,26 @@ import ChartBTS from "@/components/ChartBTS.vue";
 import HomeLocation from "@/components/HomeLocation.vue";
 import HomeCompanion from "@/components/HomeCompanion.vue";
 import HomeWeather from "@/components/HomeWeather.vue";
+import HomeTime from "../components/HomeTime.vue";
 </script>
 
 <template>
   <main>
     <div class="widgets-wrapper">
+      <div class="widget time">
+        <HomeTime />
+      </div>
+      <div class="widget weather">
+        <HomeWeather />
+      </div>
+      <div class="widget ownership">
+        <HomeCompanion />
+      </div>
       <div class="widget loc">
         <HomeLocation />
       </div>
       <div class="widget chart1">
         <ChartBTS msg="온도 / 습도 / 대기압" />
-      </div>
-      <div class="widget ownership">
-        <HomeCompanion />
-      </div>
-      <div class="widget weather">
-        <HomeWeather />
       </div>
     </div>
   </main>
@@ -35,6 +39,7 @@ main {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  gap: 20px;
 }
 
 .widget {

@@ -4,6 +4,10 @@
   font-weight: 400;
   font-style: normal;
 }
+@font-face {
+  font-family: "digital";
+  src: url("./LAB.ttf");
+}
 
 *{
   font-family: 'NPSfontBold';
