@@ -34,11 +34,11 @@ main {
   margin-top: 40px;
 }
 .widgets-wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-areas:
+  "time ownership chart1"
+  "weather ownership chart1"
+  "loc ownership .";
   gap: 20px;
 }
 
@@ -49,5 +49,30 @@ main {
 
 .widget:hover {
   transform: scale(1.05);
+}
+
+.time {
+  grid-area: time;
+  margin: 0 auto;
+}
+
+.weather {
+  grid-area: weather;
+  margin: 0 auto;
+}
+
+.ownership {
+  grid-area: ownership;
+  margin: 0 auto;
+}
+
+.loc {
+  grid-area: loc;
+  margin: 0 auto;
+}
+
+.chart1 {
+  grid-area: chart1;
+  margin: 0 auto;
 }
 </style>

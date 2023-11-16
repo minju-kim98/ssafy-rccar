@@ -80,12 +80,14 @@ renderPosition();
 div {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 40px;
   font-weight: bold;
   text-align: center;
   width: 500px;
   line-height: 1.5;
+  
 }
 
 .fa-location-dot{
