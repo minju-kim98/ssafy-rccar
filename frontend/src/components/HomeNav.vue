@@ -6,7 +6,7 @@ const changedWidth = ref("60px");
 const showText = ref(false)
 
 function openNav() {
-  changedWidth.value = "200px";
+  changedWidth.value = "180px";
   showText.value = true;
 }
 
@@ -37,6 +37,16 @@ function closeNav() {
     <RouterLink to="/control" class="link-to-web"
       ><i class="fa-solid fa-gamepad"></i>
       <div v-if=showText>Control</div></RouterLink
+    >
+
+    <RouterLink to="/music" class="link-to-web"
+      ><i class="fa-solid fa-music"></i>
+      <div v-if=showText>music</div></RouterLink
+    >
+
+    <RouterLink to="/homecontrol" class="link-to-web"
+      ><i class="fa-solid fa-house-signal"></i>
+      <div v-if=showText>home control</div></RouterLink
     >
   </div>
 </template>

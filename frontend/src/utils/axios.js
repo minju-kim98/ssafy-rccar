@@ -39,14 +39,23 @@ export const api = {
     // 메뉴 삭제
     delete: (id) => request.delete(`/companionship/${id}`),
   },
+
   command: {
     create: (time, cmd_string, arg_string) => {
-
       return request.post(`/command`, {
         time,
         cmd_string,
         arg_string,
       });
     },
+  },
+
+  devices: {
+    findAll: () => request.get("/devices"),
+    findOne: (id) => request.get(`/devices/${id}`),
+    update: (id, state) =>
+      request.patch(`/devices/${id}`, {
+        state: state,
+      }),
   },
 };

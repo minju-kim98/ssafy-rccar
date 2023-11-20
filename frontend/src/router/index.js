@@ -31,6 +31,13 @@ const router = createRouter({
       name: 'companion-update',
       component: () => import('@/views/CompanionRegister.vue')
     },
+
+    {
+      path: '/homecontrol',
+      name: 'homecontrol',
+      component: () => import('@/views/HomeControl.vue')
+    },
+
   ]
 })
 
