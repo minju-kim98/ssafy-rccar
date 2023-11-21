@@ -1,5 +1,6 @@
 <script setup>
 import ChartBTS from "@/components/ChartBTS.vue";
+import Chart2 from "../components/Chart2.vue";
 import HomeLocation from "@/components/HomeLocation.vue";
 import HomeCompanion from "@/components/HomeCompanion.vue";
 import HomeWeather from "@/components/HomeWeather.vue";
@@ -24,6 +25,9 @@ import HomeTime from "../components/HomeTime.vue";
       <div class="widget chart1">
         <ChartBTS msg="온도 / 습도 / 대기압" />
       </div>
+      <div class="widget chart2">
+        <Chart2 msg = "일 별 12시 데이터" />
+      </div>
     </div>
   </main>
 </template>
@@ -38,7 +42,7 @@ main {
   grid-template-areas:
   "time ownership chart1"
   "weather ownership chart1"
-  "loc ownership .";
+  "loc ownership chart2";
   gap: 20px;
 }
 
@@ -73,6 +77,10 @@ main {
 
 .chart1 {
   grid-area: chart1;
+  margin: 0 auto;
+}
+.chart2 {
+  grid-area: chart2;
   margin: 0 auto;
 }
 </style>

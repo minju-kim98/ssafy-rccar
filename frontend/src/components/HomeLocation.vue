@@ -10,8 +10,13 @@ const longitude = ref(null);
 const address = ref("");
 
 function getPosition() {
+  const options = {
+  enableHighAccuracy: true,
+  maximumAge: 30000,
+  timeout: 27000,
+};
   return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
+    navigator.geolocation.watchPosition(resolve, reject, options);
   });
 }
 

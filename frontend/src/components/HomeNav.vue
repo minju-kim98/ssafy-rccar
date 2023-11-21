@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 import { ref } from "vue";
 
 const changedWidth = ref("60px");
-const showText = ref(false)
+const showText = ref(false);
 
 function openNav() {
   changedWidth.value = "180px";
@@ -26,27 +26,27 @@ function closeNav() {
   >
     <RouterLink to="/" class="link-to-web"
       ><i class="fa-solid fa-chart-line"></i>
-      <div v-if=showText>Dashboard</div></RouterLink
+      <div v-if="showText">Dashboard</div></RouterLink
     >
 
     <RouterLink to="/companion" class="link-to-web"
       ><i class="fa-solid fa-heart"></i>
-      <div v-if=showText>Companion Level</div></RouterLink
+      <div v-if="showText">Companion Level</div></RouterLink
     >
 
     <RouterLink to="/control" class="link-to-web"
       ><i class="fa-solid fa-gamepad"></i>
-      <div v-if=showText>Control</div></RouterLink
+      <div v-if="showText">Control</div></RouterLink
     >
 
-    <RouterLink to="/music" class="link-to-web"
+    <a href="https://open.spotify.com/" target="_blank" class="link-to-web"
       ><i class="fa-solid fa-music"></i>
-      <div v-if=showText>music</div></RouterLink
+      <div v-if="showText">music</div></a
     >
 
     <RouterLink to="/homecontrol" class="link-to-web"
       ><i class="fa-solid fa-house-signal"></i>
-      <div v-if=showText>home control</div></RouterLink
+      <div v-if="showText">home control</div></RouterLink
     >
   </div>
 </template>
@@ -100,7 +100,6 @@ function closeNav() {
   font-size: 36px;
   margin-left: 50px;
 }
-
 
 @media screen and (max-height: 450px) {
   .sidenav {

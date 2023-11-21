@@ -19,8 +19,8 @@ const props = defineProps({
 })
 
 const socket = io("http://localhost:3000");
-socket.on("kfc", (arg) => {
-  times.value = arg.map((x) => dayjs(x.time).format("HH:mm:ss"));
+socket.on("bbq", (arg) => {
+  times.value = arg.map((x) => dayjs(x.time).format("YYYY-MM-DD"));
   pressures.value = arg.map((x) => x.num1);
   temperatures.value = arg.map((x) => x.num2);
   humidities.value = arg.map((x) => x.num3);

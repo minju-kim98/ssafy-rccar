@@ -2,9 +2,6 @@
 import { ref } from "vue";
 
 const timer = ref("00:00:00")
-const nowHour = ref(0)
-const nowMinute = ref(0)
-const nowSecond = ref(0)
 
 function setTime() {
   setInterval(() => {

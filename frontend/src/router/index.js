@@ -32,11 +32,6 @@ const router = createRouter({
       component: () => import('@/views/CompanionRegister.vue')
     },
     {
-      path: '/music',
-      name: 'music',
-      component: () => import('@/views/HomeMusic.vue')
-    },
-    {
       path: '/homecontrol',
       name: 'homecontrol',
       component: () => import('@/views/HomeControl.vue')

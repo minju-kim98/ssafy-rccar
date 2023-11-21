@@ -56,13 +56,14 @@ app.get("/", async (req, res) => {
 
 io.on("connection", async (socket) => {
   const ret = await pool.query(
-    "select * from sensing order by time desc limit 15"
+    "SELECT * FROM sensing WHERE SUBSTRING(time, -2) = '00' ORDER BY time DESC LIMIT 15;"
   );
   socket.emit("kfc", ret[0]);
 
-  socket.on("bbq", (arg) => {
-    console.log(arg);
-  });
+  const ret2 = await pool.query(
+    "SELECT * FROM sensing WHERE SUBSTRING(time, 12, 5) = '12:00' ORDER BY time DESC LIMIT 15;"
+  );
+  socket.emit("bbq", ret2[0]);
 });
 
 app.get("/api/companionship", async (req, res) => {
