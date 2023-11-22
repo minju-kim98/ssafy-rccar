@@ -18,7 +18,7 @@ const props = defineProps({
   msg: String,
 })
 
-const socket = io("http://localhost:3000");
+const socket = io("http://15.164.171.167:3000");
 socket.on("bbq", (arg) => {
   times.value = arg.map((x) => dayjs(x.time).format("YYYY-MM-DD"));
   pressures.value = arg.map((x) => x.num1);

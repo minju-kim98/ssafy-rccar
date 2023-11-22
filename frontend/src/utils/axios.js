@@ -1,5 +1,5 @@
 import axios from "axios";
-const DOMAIN = "http://127.0.0.1:3000";
+const DOMAIN = "http://15.164.171.167:3000";
 const request = axios.create({
   baseURL: `${DOMAIN}/api`,
 });

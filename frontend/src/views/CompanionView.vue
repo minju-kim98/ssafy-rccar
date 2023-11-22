@@ -14,7 +14,7 @@ async function getCompanionship() {
   console.log(companionship.value);
 }
 function setImage(image_src) {
-  return `http://localhost:3000/${image_src}`;
+  return `http://15.164.171.167:3000/${image_src}`;
 }
 
 async function deleteCompanion(id) {
