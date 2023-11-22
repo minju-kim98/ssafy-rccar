@@ -23,6 +23,7 @@ async function deleteCompanion(id) {
     const result = await api.companionship.delete(id);
     alert(result.data.message);
     router.push({ name: "companion" });
+    router.go();
   }
 }
 

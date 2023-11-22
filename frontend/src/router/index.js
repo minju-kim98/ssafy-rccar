@@ -36,7 +36,16 @@ const router = createRouter({
       name: 'homecontrol',
       component: () => import('@/views/HomeControl.vue')
     },
-
+    {
+      path: '/device-register',
+      name: 'device-register',
+      component: () => import('@/views/DeviceRegister.vue')
+    },
+    {
+      path: '/device-register/:id',
+      name: 'device-update',
+      component: () => import('@/views/DeviceRegister.vue')
+    },
   ]
 })
 

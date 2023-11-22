@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue";
 import { api } from "@/utils/axios";
+import { useRouter } from "vue-router";
 import deviceCard from "@/components/DeviceCard.vue";
+
+const router = useRouter();
 
 const devices = ref([]);
 const uniqdevices = ref([]);
@@ -25,7 +28,11 @@ function getList(loc) {
   deviceList.value = devices.value.filter((device) => device.location == loc);
 }
 
-console.log(devices.value);
+function createDevice(){
+  router.push({
+    name: "device-register",
+  });
+}
 </script>
 
 <template>
@@ -51,9 +58,9 @@ console.log(devices.value);
           <label :for="`tab${device.location}`">{{ device.location }}</label>
         </div>
         <div class="tabWrapper">
-          <input type="radio" :id="`tabPlus`" @click="getList()" name="tabs" />
-          <label :for="`tabPlus`"
-            ><i class="fa-solid fa-circle-plus"></i
+          <input type="radio" :id="`tabPlus`" @click="getList" name="tabs" />
+          <label :for="`tabPlus`" @click="createDevice"
+            ><i class="fa-solid fa-circle-plus" ></i
           ></label>
         </div>
       </div>

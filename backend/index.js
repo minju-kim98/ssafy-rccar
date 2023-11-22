@@ -231,9 +231,30 @@ app.get("/api/devices/:id", async (req, res) => {
   }
 });
 
-app.patch("/api/devices/:id", async (req, res) => {
+app.post("/api/devices", async (req, res) => {
   try {
-    console.log(req.params);
+    console.log(req.body)
+    const data = await pool.query(
+      `INSERT INTO devices (name, location, state)
+		 VALUES (?, ?, ?)`,
+      [req.body.name, req.body.location, 0]
+    );
+
+    return res.json({
+      success: true,
+      message: "디바이스 등록에 성공하였습니다.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "디바이스 등록에 실패하였습니다.",
+    });
+  }
+});
+
+app.patch("/api/devices/1/:id", async (req, res) => {
+  try {
 
     const data = await pool.query(`UPDATE devices SET state = ? where id = ?`, [
       req.body.state,
@@ -249,6 +270,48 @@ app.patch("/api/devices/:id", async (req, res) => {
     return res.json({
       success: false,
       message: "디바이스 상태 변경에 실패하였습니다.",
+    });
+  }
+});
+
+app.patch("/api/devices/2/:id", async (req, res) => {
+  try {
+    console.log(req.params);
+
+    const data = await pool.query(`UPDATE devices SET name = ?, location = ? where id = ?`, [
+      req.body.name,
+      req.body.location,
+      req.params.id,
+    ]);
+
+    return res.json({
+      success: true,
+      message: "디바이스 정보 변경에 성공하였습니다.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "디바이스 정보 변경에 실패하였습니다.",
+    });
+  }
+});
+
+app.delete("/api/devices/:id", async (req, res) => {
+  try {
+    const data = await pool.query(`DELETE FROM devices WHERE id = ?`, [
+      req.params.id,
+    ]);
+
+    return res.json({
+      success: true,
+      message: "디바이스 삭제에 성공하였습니다.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "디바이스 삭제에 실패하였습니다.",
     });
   }
 });

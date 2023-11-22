@@ -5,7 +5,7 @@ import ChartBTS from "@/components/ChartBTS.vue";
 <!-- <ChartBTS msg="I'm B.T.S." /> -->
 
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import HomeNav from "@/components/HomeNav.vue";
 
 </script>

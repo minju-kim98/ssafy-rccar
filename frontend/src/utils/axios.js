@@ -25,17 +25,6 @@ export const api = {
         name: name,
       }),
 
-    // 이미지 수정
-    updateImage: (id, file) => {
-      const formData = new FormData();
-      formData.append("file", file);
-      return request.post(`/companionship/${id}/image`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    },
-
     // 메뉴 삭제
     delete: (id) => request.delete(`/companionship/${id}`),
   },
@@ -53,9 +42,21 @@ export const api = {
   devices: {
     findAll: () => request.get("/devices"),
     findOne: (id) => request.get(`/devices/${id}`),
-    update: (id, state) =>
-      request.patch(`/devices/${id}`, {
+    create: (name, location) => {
+      return request.post(`/devices`, {
+        name: name,
+        location: location,
+      });
+    },
+    updateState: (id, state) =>
+      request.patch(`/devices/1/${id}`, {
         state: state,
       }),
+    updateInfo: (id, name, location) =>
+      request.patch(`/devices/2/${id}`, {
+        name: name,
+        location: location,
+      }),
+    delete: (id) => request.delete(`/devices/${id}`),
   },
 };
