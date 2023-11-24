@@ -11,10 +11,10 @@ const address = ref("");
 
 function getPosition() {
   const options = {
-  enableHighAccuracy: true,
-  maximumAge: 30000,
-  timeout: 27000,
-};
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000,
+  };
   return new Promise((resolve, reject) => {
     navigator.geolocation.watchPosition(resolve, reject, options);
   });
@@ -31,7 +31,13 @@ async function renderPosition() {
 
     getAddress(latitude.value, longitude.value);
   } catch (error) {
-    console.log(error);
+    latitude.value = 35.2055289;
+    longitude.value = 126.8115756;
+
+    location.setlat(latitude.value);
+    location.setlon(longitude.value);
+
+    getAddress(latitude.value, longitude.value);
   }
 }
 
@@ -56,7 +62,8 @@ async function getAddress(latitude, longitude) {
         if (request.status == 200) {
           const data = JSON.parse(request.responseText);
           data.results[0].address_components.forEach((name, index) => {
-            if (index > 0 && (name.long_name.match(/[a-zA-Z ]/))) address.value += name.long_name + ", ";
+            if (index > 0 && name.long_name.match(/[a-zA-Z ]/))
+              address.value += name.long_name + ", ";
           });
           address.value = address.value.slice(0, -2);
           resolve(address.value);
@@ -70,7 +77,6 @@ async function getAddress(latitude, longitude) {
 }
 
 renderPosition();
-
 </script>
 
 <template>
@@ -92,11 +98,9 @@ div {
   text-align: center;
   width: 500px;
   line-height: 1.5;
-  
 }
 
-.fa-location-dot{
+.fa-location-dot {
   font-size: 45px;
 }
-
 </style>

@@ -61,7 +61,7 @@ io.on("connection", async (socket) => {
   socket.emit("kfc", ret[0]);
 
   const ret2 = await pool.query(
-    "SELECT * FROM sensing WHERE SUBSTRING(time, 12, 8) = '12:00:12' ORDER BY time DESC LIMIT 15;"
+    "SELECT * FROM sensing WHERE SUBSTRING(time, 12, 5) = '12:00' ORDER BY time DESC LIMIT 15;"
   );
   socket.emit("bbq", ret2[0]);
 });

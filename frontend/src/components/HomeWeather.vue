@@ -7,7 +7,7 @@ import { ref } from "vue";
 const location = useLocationStore();
 const sensedata = useSensedataStore();
 const datas = ref({});
-const nowpressure = ref();
+const nowpressure = ref(1013);
 
 const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${location.lat}&lon=${location.lon}&appid=ef8c52362dd11b105f2467fbb3cc6623`;
 
@@ -22,12 +22,13 @@ async function getWeatherData() {
 }
 
 getWeatherData();
-
-if(sensedata.pressure < 100){
-  nowpressure.value = sensedata.pressure * 100;
-}
-else{
-  nowpressure.value = sensedata.pressure;
+if(sensedata.pressure){
+  if(sensedata.pressure < 100){
+    nowpressure.value = sensedata.pressure * 100;
+  }
+  else{
+    nowpressure.value = sensedata.pressure;
+  }
 }
 
 
